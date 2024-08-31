@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.db import models
+from django.urls import reverse
 
 from webapp.models import BaseModel
 
@@ -25,9 +26,14 @@ class Photo(BaseModel):
     def __str__(self):
         return self.caption[:50]
 
-    def clean_album(self):
+    def get_absolute_url(self):
+        return reverse('webapp:detail_photo', kwargs={'pk': self.pk})
+
+    def clean(self):
         if self.album and self.album.author != self.author:
             raise ValidationError("Вы не можете добавлять фотографии в альбомы, которые Вам не принадлежат")
+        if self.album and self.album.is_private and not self.is_private:
+            raise ValidationError('Фотография не может быть публичной, если альбом приватный')
 
     class Meta:
         db_table = 'photos'
