@@ -2,7 +2,8 @@ from django.urls import path
 from django.views.generic import RedirectView
 
 from webapp.views import PhotoListView, PhotoDetailView, PhotoCreateView, PhotoUpdateView, PhotoDeleteView, \
-    AlbumDetailView, AlbumCreateView, AlbumUpdateView, AlbumDeleteView, PhotoLinkView, PhotoDetailWithTokenView
+    AlbumDetailView, AlbumCreateView, AlbumUpdateView, AlbumDeleteView, PhotoLinkView, PhotoDetailWithTokenView, \
+    AddToFavorites, RemoveFromFavorites
 
 app_name = 'webapp'
 
@@ -19,4 +20,6 @@ urlpatterns = [
     path('albums/create/', AlbumCreateView.as_view(), name='create_album'),
     path('albums/<int:pk>/update/', AlbumUpdateView.as_view(), name='update_album'),
     path('albums/<int:pk>/delete/', AlbumDeleteView.as_view(), name='delete_album'),
+    path('favorites/add/', AddToFavorites.as_view(), name='add_to_favorites'),
+    path('favorites/remove/', RemoveFromFavorites.as_view(), name='remove_from_favorites'),
 ]
