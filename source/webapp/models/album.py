@@ -6,8 +6,8 @@ from webapp.models import BaseModel
 
 
 class Album(BaseModel):
-    title = models.CharField(max_length=250, verbose_name='Название')
-    description = models.TextField(max_length=2000, null=True, blank=True, verbose_name='Описание')
+    title = models.CharField(max_length=70, verbose_name='Название')
+    description = models.TextField(max_length=200, null=True, blank=True, verbose_name='Описание')
     author = models.ForeignKey(
         get_user_model(),
         related_name='author_albums',

@@ -10,6 +10,12 @@
         <li class="nav-item">
             <a class="nav-link" href="{% url 'webapp:delete_photo' photo.pk %}">Удалить фото</a>
         </li>
+        {% if not photo.access_token %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'webapp:link_photo' photo.pk %}">Сгенерировать ссылку для
+                    доступа</a>
+            </li>
+        {% endif %}
     {% endif %}
 {% endblock %}
 {% block content %}
@@ -28,6 +34,11 @@
                 <p> {% if photo.album %}
                     <a href="{% url 'webapp:detail_album' photo.album.pk %}">Альбом: {{ photo.album.title }}</a>{% else %}{% endif %}
                 </p>
+                {% if photo.access_token and user == photo.author %}
+                    <p>Ссылка для доступа: <a
+                            href="{% url 'webapp:detail_photo_with_token' pk=photo.pk token=photo.access_token %}">http://localhost:8000{% url 'webapp:detail_photo_with_token' pk=photo.pk token=photo.access_token %}</a>
+                    </p>
+                {% endif %}
             </div>
         </div>
         {% if user.is_authenticated and photo.favorite_photos.count %}

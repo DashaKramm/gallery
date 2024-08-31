@@ -8,7 +8,7 @@ from webapp.models import BaseModel
 
 class Photo(BaseModel):
     photo = models.ImageField(upload_to='pictures', verbose_name='Фотография')
-    caption = models.CharField(max_length=250, verbose_name='Подпись')
+    caption = models.CharField(max_length=70, verbose_name='Подпись')
     author = models.ForeignKey(
         get_user_model(),
         related_name='author_photos',
@@ -22,6 +22,7 @@ class Photo(BaseModel):
         on_delete=models.CASCADE,
         verbose_name='Альбом')
     is_private = models.BooleanField(default=False, verbose_name='Приватное')
+    access_token = models.CharField(max_length=70, unique=True, null=True, blank=True, verbose_name='Токен доступа')
 
     def __str__(self):
         return self.caption[:50]
