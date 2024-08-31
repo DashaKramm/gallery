@@ -14,7 +14,7 @@ class Album(BaseModel):
         null=False,
         blank=False,
         verbose_name='Автор')
-    is_private = models.BooleanField(default=False, verbose_name='Статус')
+    is_private = models.BooleanField(default=False, verbose_name='Приватный')
 
     def __str__(self):
         return self.title

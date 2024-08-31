@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.core.exceptions import ValidationError
 from django.db import models
 
 from webapp.models import BaseModel
@@ -19,10 +20,14 @@ class Photo(BaseModel):
         blank=True,
         on_delete=models.CASCADE,
         verbose_name='Альбом')
-    is_private = models.BooleanField(default=False, verbose_name='Статус')
+    is_private = models.BooleanField(default=False, verbose_name='Приватное')
 
     def __str__(self):
         return self.caption[:50]
+
+    def clean_album(self):
+        if self.album and self.album.author != self.author:
+            raise ValidationError("Вы не можете добавлять фотографии в альбомы, которые Вам не принадлежат")
 
     class Meta:
         db_table = 'photos'
