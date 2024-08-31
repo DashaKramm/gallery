@@ -21,7 +21,8 @@
             </a>
             <div class="card-body">
                 <p class="card-text">{{ photo.caption }}</p>
-                <p>Автор: {% if user.is_authenticated %}<a href="#">{{ photo.author.get_full_name }}</a>{% else %}
+                <p>Автор: {% if user.is_authenticated %}
+                    <a href="{% url 'accounts:detail' photo.author.pk %}">{{ photo.author.get_full_name }}</a>{% else %}
                     {{ photo.author.get_full_name }}{% endif %}</p>
                 <p class="card-text">{{ photo.created_at }}</p>
                 <p> {% if photo.album %}
@@ -33,7 +34,7 @@
             <h5>Избранное</h5>
             <ul class="list-unstyled">
                 {% for user in photo.favorite_photos.all %}
-                    <li><a href="#">{{ user.username }}</a></li>
+                    <li><a href="{% url 'accounts:detail' user.pk %}">{{ user.username }}</a></li>
                 {% endfor %}
             </ul>
         {% endif %}

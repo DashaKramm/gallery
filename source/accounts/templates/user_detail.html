@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>{{ user.get_full_name }}</h2>
+    {% if user == request.user %}
+        <p><a href="#">Перейти к избранному</a></p>
+    {% endif %}
+    <h3>Публичные альбомы</h3>
+    <ul>
+        {% for album in user_albums %}
+            <li><a href="{% url 'webapp:detail_album' album.pk %}">{{ album.title }}</a></li>
+        {% empty %}
+            <li>Альбомы не найдены</li>
+        {% endfor %}
+    </ul>
+    <h3>Публичные фотографии</h3>
+    <div class="row">
+        {% for photo in user_photos %}
+            <div class="col-md-4">
+                <a href="{% url 'webapp:detail_photo' photo.pk %}">
+                    <img src="{{ photo.photo.url }}" alt="{{ photo.caption }}" class="img-thumbnail">
+                </a>
+            </div>
+        {% empty %}
+            <p>Фотографии не найдены</p>
+        {% endfor %}
+    </div>
+    {% if user == request.user %}
+        <h3>Приватные альбомы</h3>
+        <ul>
+            {% for album in private_albums %}
+                <li><a href="{% url 'webapp:detail_album' album.pk %}">{{ album.title }}</a></li>
+            {% empty %}
+                <li>Приватные альбомы не найдены</li>
+            {% endfor %}
+        </ul>
+        <h3>Приватные фотографии</h3>
+        <div class="row">
+            {% for photo in private_pictures %}
+                <div class="col-md-4">
+                    <a href="{% url 'webapp:detail_photo' photo.pk %}">
+                        <img src="{{ photo.photo.url }}" alt="{{ photo.caption }}" class="img-thumbnail">
+                    </a>
+                </div>
+            {% empty %}
+                <p>Приватные фотографии не найдены</p>
+            {% endfor %}
+        </div>
+        <h3>Избранное</h3>
+        <h4>Альбомы</h4>
+        <ul>
+            {% for album in user_favorites.albums.all %}
+                {% if not album.is_private %}
+                    <li><a href="{% url 'webapp:detail_album' album.pk %}">{{ album.title }}</a></li>
+                {% endif %}
+            {% empty %}
+                <li>Избранные альбомы не найдены</li>
+            {% endfor %}
+        </ul>
+        <h4>Фотографии</h4>
+        <div class="row">
+            {% for photo in user_favorites.photos.all %}
+                {% if not photo.is_private %}
+                    <div class="col-md-4">
+                        <a href="{% url 'webapp:detail_photo' photo.pk %}">
+                            <img src="{{ photo.photo.url }}" alt="{{ photo.caption }}" class="img-thumbnail">
+                        </a>
+                    </div>
+                {% endif %}
+            {% empty %}
+                <p>Избранные фотографии не найдены</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}

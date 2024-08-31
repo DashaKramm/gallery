@@ -32,9 +32,29 @@
                                 фото</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{% url 'webapp:create_album' %}">Создать альбом</a>
+                            <a class="nav-link active" aria-current="page" href="{% url 'webapp:create_album' %}">Создать
+                                альбом</a>
                         </li>
                     {% endblock %}
+                    <li class="nav-item">
+                        <p class="nav-link"><a
+                                href="{% url 'accounts:detail' user.pk %}">{{ request.user.username }}</a></p>
+                    </li>
+                    <li class="nav-item">
+                        <form action="{% url 'accounts:logout' %}?next={{ request.get_full_path }}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="nav-link">Выйти</button>
+                        </form>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page"
+                           href="{% url 'accounts:login' %}?next={{ request.get_full_path }}">Войти</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page"
+                           href="{% url 'accounts:register' %}?next={{ request.get_full_path }}">Регистрация</a>
+                    </li>
                 {% endif %}
             </ul>
         </div>
