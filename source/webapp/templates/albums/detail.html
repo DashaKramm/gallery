@@ -16,7 +16,7 @@
     <div class="container mt-4">
         <div class="card mb-4" style="max-width: 600px; margin: 0 auto;">
             <div class="card-body">
-                <a href="{% url 'webapp:detail_album' album.pk %}">
+                <a href="{% if user.is_authenticated %}{% url 'webapp:detail_album' album.pk %}{% else %}#{% endif %}">
                     <p class="card-text">{{ album.title }}</p>
                 </a>
                 <p class="card-text">{{ album.description }}</p>
