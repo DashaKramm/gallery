@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}
+    <title>Delete album</title>
+{% endblock %}
+{% block content %}
+    <h2>Delete Album</h2>
+    <form action="" method="post">
+        {% csrf_token %}
+        <p>Вы действительно хотите удалить этот альбом?</p>
+        <div class="d-flex justify-content-start">
+            <input type="submit" value="Да" class="btn btn-danger rounded-0 me-2">
+            <a href="{% url "webapp:detail_album" album.pk %}" class="btn btn-primary rounded-0">Нет</a>
+        </div>
+    </form>
+{% endblock %}

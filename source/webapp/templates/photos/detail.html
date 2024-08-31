@@ -25,7 +25,7 @@
                     {{ photo.author.get_full_name }}{% endif %}</p>
                 <p class="card-text">{{ photo.created_at }}</p>
                 <p> {% if photo.album %}
-                    <a href="{% url 'album_detail' photo.album.pk %}">Альбом: {{ photo.album.title }}</a>{% else %}{% endif %}
+                    <a href="{% url 'webapp:detail_album' photo.album.pk %}">Альбом: {{ photo.album.title }}</a>{% else %}{% endif %}
                 </p>
             </div>
         </div>

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}
+    <title>Альбом</title>
+{% endblock %}
+{% block links %}
+    {% if user == album.author %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'webapp:update_album' album.pk %}">Редактировать альбом</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'webapp:delete_album' album.pk %}">Удалить альбом</a>
+        </li>
+    {% endif %}
+{% endblock %}
+{% block content %}
+    <div class="container mt-4">
+        <div class="card mb-4" style="max-width: 600px; margin: 0 auto;">
+            <div class="card-body">
+                <a href="{% url 'webapp:detail_album' album.pk %}">
+                    <p class="card-text">{{ album.title }}</p>
+                </a>
+                <p class="card-text">{{ album.description }}</p>
+            </div>
+        </div>
+        {% include 'partial/photos_list.html' %}
+    </div>
+{% endblock %}

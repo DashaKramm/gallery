@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}
+    <title>Create album</title>
+{% endblock %}
+{% block content %}
+    <h2>Create Album</h2>
+    <form action="" method="post" enctype="multipart/form-data">
+        {% include 'partial/form.html' with button_text='Create' %}
+    </form>
+{% endblock %}

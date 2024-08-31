@@ -36,6 +36,11 @@ class PhotoUpdateView(UpdateView):
     form_class = PhotoForm
     template_name = 'photos/update.html'
 
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
+
 
 class PhotoDeleteView(DeleteView):
     model = Photo
