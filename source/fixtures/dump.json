@@ -1,0 +1,63 @@
+[
+{
+  "model": "webapp.photo",
+  "pk": 2,
+  "fields": {
+    "created_at": "2024-08-31T09:14:32.718Z",
+    "photo": "pictures/4-1.jpg",
+    "caption": "музей",
+    "author": 1,
+    "album": null,
+    "is_private": false,
+    "access_token": "8578e7dfca8d4409a585feb5df0868e2"
+  }
+},
+{
+  "model": "webapp.photo",
+  "pk": 3,
+  "fields": {
+    "created_at": "2024-08-31T09:14:46.826Z",
+    "photo": "pictures/happy_cat_tLQC6TM.jpg",
+    "caption": "happy cat",
+    "author": 1,
+    "album": 1,
+    "is_private": false,
+    "access_token": "9b0eea7f3a1e4a0b80f71ff3a35d1fc1"
+  }
+},
+{
+  "model": "webapp.photo",
+  "pk": 4,
+  "fields": {
+    "created_at": "2024-08-31T13:22:25.087Z",
+    "photo": "pictures/klukvennyi-tort-s-maskarpone.jpg",
+    "caption": "тортик",
+    "author": 3,
+    "album": 2,
+    "is_private": true,
+    "access_token": "3a866eb8655f45e7961d2d2381a2f7d9"
+  }
+},
+{
+  "model": "webapp.album",
+  "pk": 1,
+  "fields": {
+    "created_at": "2024-08-31T10:19:07.218Z",
+    "title": "Котики",
+    "description": "Милейшие котярики",
+    "author": 1,
+    "is_private": false
+  }
+},
+{
+  "model": "webapp.album",
+  "pk": 2,
+  "fields": {
+    "created_at": "2024-08-31T13:23:25.505Z",
+    "title": "Сладости",
+    "description": "вкусняшки",
+    "author": 3,
+    "is_private": true
+  }
+}
+]
